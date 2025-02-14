@@ -1,110 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PendingPage() {
   const navigate = useNavigate();
   const [pendingTasks, setPendingTasks] = useState([]);
 
-  // Load tasks from localStorage when the component mounts
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("pendingTasks")) || [];
+    const storedTasks = JSON.parse(localStorage.getItem('pendingTasks')) || [];
     setPendingTasks(storedTasks);
   }, []);
 
-  // Function to add a new task
   function addTask() {
-    const newTask = {
-      proj: prompt("Enter Project Name:"),
-      sDate: prompt("Enter Start Date:"),
-      eDate: prompt("Enter End Date:"),
-      priority: prompt("Enter Priority Level:")
-    };
-
-    if (newTask.proj && newTask.sDate && newTask.eDate && newTask.priority) {
-      const updatedTasks = [...pendingTasks, newTask];
-      setPendingTasks(updatedTasks);
-      localStorage.setItem("pendingTasks", JSON.stringify(updatedTasks));
-    }
+    navigate('/task');
   }
 
   function pend() {
-    navigate("/");
+    navigate('/');
   }
 
   function com() {
-    navigate("/com");
-  }
-
-  function settings() {
-    navigate("/settings");
-  }
-
-  // Mark task as complete and move to completedTasks
-  function markAsComplete(index) {
-    const updatedTasks = [...pendingTasks];
-    const completedTask = updatedTasks.splice(index, 1)[0];
-
-    // Get existing completed tasks and update
-    const existingCompletedTasks =
-      JSON.parse(localStorage.getItem("completedTasks")) || [];
-    const updatedCompletedTasks = [...existingCompletedTasks, completedTask];
-
-    // Save to localStorage
-    localStorage.setItem("completedTasks", JSON.stringify(updatedCompletedTasks));
-    localStorage.setItem("pendingTasks", JSON.stringify(updatedTasks));
-
-    setPendingTasks(updatedTasks);
-  }
-
-  // Edit a task
-  function editTask(index) {
-    const taskToEdit = pendingTasks[index];
-    const newProjectName = prompt("Edit Project Name:", taskToEdit.proj);
-    if (newProjectName !== null && newProjectName.trim() !== "") {
-      const updatedTasks = [...pendingTasks];
-      updatedTasks[index].proj = newProjectName;
-      setPendingTasks(updatedTasks);
-      localStorage.setItem("pendingTasks", JSON.stringify(updatedTasks));
-    }
-  }
-
-  // Delete a task
-  function deleteTask(index) {
-    if (window.confirm("Are you sure you want to delete this task?")) {
-      const updatedTasks = pendingTasks.filter((_, i) => i !== index);
-      setPendingTasks(updatedTasks);
-      localStorage.setItem("pendingTasks", JSON.stringify(updatedTasks));
-    }
+    navigate('/com');
   }
 
   return (
-    <div className="col-lg-8 col-11 mx-auto mt-5 d-flex border border-3 border-secondary rounded-3 p-4 lol shadow">
+    <div className='col-lg-8 col-11 mx-auto mt-5 d-flex border border-3 border-secondary rounded-3 p-4 lol shadow'>
       <div className="col-3 p-3 rounded-3 bg-warning bg-opacity-50">
-        <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={addTask}>
-          Add New Task
-        </button>
-        <br />
-        <button className="mt-5 fs-5 fw-bold btn bg-light w-100 p-2 text-start" onClick={pend}>
-          Pending Tasks
-        </button>
-        <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={com}>
-          Completed Tasks
-        </button>
-        <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={settings}>
-          Settings
-        </button>
+        <div className="d-flex justify-content-between">
+          <p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+          </p>
+          <p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list-task" viewBox="0 0 16 16">
+              <path fillRule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+              <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+              <path fillRule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+            </svg>
+          </p>
+        </div>
+        <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={addTask}>Add New Task</button> <br />
+        <button className="mt-5 fs-5 fw-bold btn bg-light w-100 p-2 text-start" onClick={pend}>Pending Tasks</button>
+        <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={com}>Completed Tasks</button>
+        <button className="fs-5 fw-bold mt-5 btn w-100 text-start">Settings</button>
       </div>
 
       <div className="col-9 ms-3">
         <h1>Welcome User👋</h1>
-        <button
-          className="fs-5 p-2 mt-4 rounded-3 form-control fw-bold bg-warning bg-opacity-50"
-          onClick={addTask}
-        >
+        <button className="fs-5 p-2 mt-4 rounded-3 form-control fw-bold bg-warning bg-opacity-50" onClick={addTask}>
           + &nbsp; &nbsp; Add New Task
         </button>
-        <table className="mt-5 mx-auto table table-bordered">
-          <thead className="table-warning">
+        <table className="mt-5 mx-auto">
+          <thead>
             <tr>
               <th className="px-lg-5 px-3">S/N</th>
               <th className="px-lg-5 px-3">Project Name</th>
@@ -123,16 +71,8 @@ function PendingPage() {
                   <td className="px-lg-5 px-3">{task.sDate}</td>
                   <td className="px-lg-5 px-3">{task.eDate}</td>
                   <td className="px-lg-5 px-3">{task.priority}</td>
-                  <td className="px-lg-5 px-3 d-flex gap-2">
-                    <button className="btn btn-sm btn-primary" onClick={() => editTask(index)}>
-                      <i className="bi bi-pencil"></i>
-                    </button>
-                    <button className="btn btn-sm btn-danger" onClick={() => deleteTask(index)}>
-                      <i className="bi bi-trash"></i>
-                    </button>
-                    <button className="btn btn-sm btn-success" onClick={() => markAsComplete(index)}>
-                      <i className="bi bi-check-circle"></i>
-                    </button>
+                  <td className="px-lg-5 px-3">
+                    <button className="btn btn-success">Complete</button>
                   </td>
                 </tr>
               ))

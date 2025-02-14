@@ -44,16 +44,6 @@
         import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
         import firebaseConfig from '/config.js'
 
-
-        // const firebaseConfig = {
-        //     apiKey: "AIzaSyDp8QU5LBAckYXAHkUpKk4xI1teCijbVEI",
-        //     authDomain: "login-authentication-695ef.firebaseapp.com",
-        //     projectId: "login-authentication-695ef",
-        //     storageBucket: "login-authentication-695ef.firebasestorage.app",
-        //     messagingSenderId: "260500603529",
-        //     appId: "1:260500603529:web:c64cd001774b805e043c58"
-        // };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
 
@@ -62,7 +52,6 @@
             const password = document.getElementById('password')
 
             if (email.value === '' || password.value === '') {
-                // alert('fill it up')
                 error.style.display = 'block'
             } else {
                 error.style.display = 'none'

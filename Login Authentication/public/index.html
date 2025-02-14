@@ -40,7 +40,6 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    // const provider = new GoogleAuthProvider();
 
     function signUp() {
       const email = document.getElementById('email')
@@ -49,7 +48,6 @@
       const lName = document.getElementById('lastName')
       const error = document.getElementById('error');
       if (fName.value === '' || lName.value === '' || email.value === '' || password.value === '') {
-        // alert('fill it up!')
         errorMsg.style.display = 'block'
 
       } else {

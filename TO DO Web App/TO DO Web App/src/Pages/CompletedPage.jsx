@@ -1,81 +1,3 @@
-
-// import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-
-// function CompletedPage() {
-//   const navigate = useNavigate();
-//   const [completedTasks, setCompletedTasks] = useState([]);
-
-//   useEffect(() => {
-//     const storedCompletedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
-//     setCompletedTasks(storedCompletedTasks);
-//   }, []);
-
-//   function addTask() {
-//     navigate('/task');
-//   }
-//   function pend() {
-//     navigate('/');
-//   }
-//   function com() {
-//     navigate('/com');
-//   }
-
-//   function deleteTask(index) {
-//     const updatedTasks = completedTasks.filter((_, i) => i !== index);
-//     setCompletedTasks(updatedTasks);
-//     localStorage.setItem('completedTasks', JSON.stringify(updatedTasks));
-//   }
-
-//   return (
-//     <div className='col-lg-8 col-11 mx-auto mt-5 d-flex border border-3 border-secondary rounded-3 p-4 lol'>
-//       <div className="col-3 p-3 rounded-3 bg-warning bg-opacity-50">
-//         <button className="fs-5 fw-bold mt-5 btn w-100 text-start" onClick={addTask}>Add New Task</button> <br />
-//         <button className="mt-5 fs-5 fw-bold btn w-100 p-2 text-start" onClick={pend}>Pending Tasks</button>
-//         <button className="fs-5 fw-bold mt-5 btn bg-white w-100 text-start" onClick={com}>Completed Tasks</button>
-//       </div>
-
-//       <div className="col-9 ms-3">
-//         <h1 className='text-decoration-underline fs-4 fw-bold text-center'>Completed Tasks</h1>
-//         {completedTasks.length > 0 ? (
-//           <table className="mt-5 mx-auto">
-//             <thead>
-//               <tr>
-//                 <th className="px-lg-5 px-3">S/N</th>
-//                 <th className="px-lg-5 px-3">Project Name</th>
-//                 <th className="px-lg-5 px-3">Start date</th>
-//                 <th className="px-lg-5 px-3">End date</th>
-//                 <th className="px-lg-5 px-3">Priority</th>
-//                 <th className="px-lg-5 px-3">Actions</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {completedTasks.map((task, index) => (
-//                 <tr key={index} className='ms-4'>
-//                   <td>{index + 1}</td>
-//                   <td>{task.proj}</td>
-//                   <td>{task.sDate}</td>
-//                   <td>{task.eDate}</td>
-//                   <td>{task.priority}</td>
-//                   <td>
-//                     <button className="btn btn-danger mx-2" onClick={() => deleteTask(index)}>
-//                       🗑️
-//                     </button>
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         ) : (
-//           <p className='fs-3 text-center mt-5 text-secondary fst-italic'>No Completed Task Yet!</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default CompletedPage;
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -106,7 +28,6 @@ function CompletedPage() {
 
   return (
     <div className='col-lg-8 col-11 mx-auto mt-5 d-flex border border-3 border-secondary rounded-3 p-4 lol'>
-      {/* Sidebar Navigation */}
       <div className="col-3 p-3 rounded-3 bg-warning bg-opacity-50">
         <div className="d-flex justify-content-between">
           <p>
@@ -129,7 +50,6 @@ function CompletedPage() {
         <button className="fs-5 fw-bold mt-5 btn w-100 text-start">Settings</button>
       </div>
 
-      {/* Main Content */}
       <div className="col-9 ms-3">
         <h1 className='text-decoration-underline fs-4 fw-bold text-center'>Completed Tasks</h1>
         
